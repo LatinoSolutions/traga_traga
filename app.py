@@ -275,6 +275,218 @@ def render_disclaimer() -> None:
     )
 
 
+def render_copy_idea(label: str, text: str) -> None:
+    with st.expander(label):
+        st.code(text, language=None)
+
+
+def page_soft_72h_plan() -> None:
+    st.subheader("Plan suave 72h — baja presión interna")
+    st.caption(
+        "Ideas simples para comer pequeño, bajo en gas, bajo en grasa y registrar cómo responde el cuerpo."
+    )
+    render_disclaimer()
+
+    with st.expander("Reglas rápidas", expanded=True):
+        st.markdown(
+            """
+            - Comer porciones pequeñas.
+            - Evitar cerveza, bebidas con gas y agua con gas durante el test.
+            - Evitar comidas muy grasosas, mantequilla, frituras, pizza, embutidos.
+            - Evitar por ahora legumbres, cebolla, ajo, brócoli, coliflor, repollo.
+            - Preferir cocido, vapor, sopa o plancha seca.
+            - Caminar suave 10–15 min después de comer.
+            - No acostarse justo después de comer.
+            - Registrar síntomas 30–60 min después.
+            """
+        )
+
+    with st.expander("Lista supermercado"):
+        grocery_rows = [
+            ("Proteínas", "Pechuga de pollo o pavo", "500–700 g", "baja grasa, fácil de porcionar"),
+            ("Proteínas", "Huevos", "6 unidades", "proteína simple"),
+            ("Proteínas", "Pescado blanco", "2 porciones / 300–400 g", "suave"),
+            (
+                "Proteínas",
+                "Yogur natural sin azúcar o sin lactosa",
+                "2–3 unidades",
+                "solo si se tolera",
+            ),
+            ("Proteínas", "Tofu natural", "opcional", "probar porción pequeña"),
+            ("Carbohidratos suaves", "Arroz blanco", "500 g", "base segura"),
+            ("Carbohidratos suaves", "Papas", "1–1.5 kg", "cocidas o sopa"),
+            ("Carbohidratos suaves", "Avena fina", "300–500 g", "probar poca cantidad"),
+            ("Carbohidratos suaves", "Pan tostado simple o crackers", "1 paquete", "snack simple"),
+            (
+                "Carbohidratos suaves",
+                "Pasta simple no integral",
+                "opcional",
+                "porciones pequeñas",
+            ),
+            ("Verduras suaves", "Zanahoria", "700 g–1 kg", "cocida"),
+            ("Verduras suaves", "Zucchini/calabacín", "3–4 unidades", "cocido, sin mantequilla"),
+            ("Verduras suaves", "Zapallo/calabaza", "700 g–1 kg", "sopa o puré"),
+            ("Verduras suaves", "Espinaca", "1 bolsa pequeña", "cocida o poca cantidad"),
+            ("Verduras suaves", "Pepino sin cáscara", "opcional", "solo si cae bien"),
+            ("Frutas suaves", "Plátanos", "5–6 unidades", "porciones pequeñas"),
+            ("Frutas suaves", "Manzanas para compota", "4–5 unidades", "cocidas, sin azúcar"),
+            ("Frutas suaves", "Pera cocida", "opcional", "probar pequeña"),
+            ("Frutas suaves", "Melón", "opcional", "si se tolera"),
+            ("Infusiones/líquidos", "Manzanilla/Kamille", "1 caja", "noche o post comida"),
+            ("Infusiones/líquidos", "Melisa/Zitronenmelisse", "1 caja", "ansiedad/sueño"),
+            ("Infusiones/líquidos", "Agua sin gas", "suficiente", "evitar gas externo"),
+            ("Infusiones/líquidos", "Caldo suave", "opcional", "sopa"),
+        ]
+        st.dataframe(
+            pd.DataFrame(
+                grocery_rows,
+                columns=["Categoría", "Producto", "Cantidad sugerida 3 días", "Nota digestiva"],
+            ),
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        st.markdown("**Evitar comprar por ahora**")
+        avoid_items = [
+            "Cerveza",
+            "Agua con gas",
+            "Bebidas gaseosas",
+            "Café",
+            "Picante",
+            "Chocolate",
+            "Cebolla",
+            "Ajo",
+            "Brócoli",
+            "Coliflor",
+            "Repollo",
+            "Lentejas",
+            "Porotos",
+            "Garbanzos",
+            "Hamburguesas vegetarianas procesadas",
+            "Fritos",
+            "Pizza",
+            "Embutidos",
+            "Queso pesado",
+            "Productos con sorbitol/xilitol",
+        ]
+        st.write(", ".join(avoid_items))
+
+    with st.expander("Bloques del día"):
+        blocks = [
+            (
+                "08:30 — Desayuno",
+                [
+                    "Avena suave 40 g + agua/leche sin lactosa 180–220 ml + 1/2 plátano",
+                    "1–2 huevos + 1 tostada simple",
+                    "Licuado pequeño: 1/2 plátano + 200 ml agua/leche sin lactosa + 20 g avena fina",
+                ],
+            ),
+            (
+                "11:00 — Snack suave",
+                [
+                    "Yogur natural sin azúcar 125–150 g",
+                    "Compota de manzana 150 g",
+                    "1 tostada/crackers simples + té",
+                ],
+            ),
+            (
+                "13:30 — Almuerzo",
+                [
+                    "Arroz blanco cocido 150–180 g + pollo 100–130 g + zanahoria cocida 100 g",
+                    "Papa cocida 200–250 g + pescado 120–150 g + zucchini cocido 100 g",
+                    "Sopa suave 350–450 ml + huevo cocido o pollo desmenuzado 80–100 g",
+                ],
+            ),
+            (
+                "16:30 — Snack / té",
+                [
+                    "Té de manzanilla/melisa + 1 tostada",
+                    "1/2 plátano",
+                    "Yogur 125 g si se tolera",
+                ],
+            ),
+            (
+                "19:00 — Cena",
+                [
+                    "Sopa de papa/zanahoria/zapallo 350–450 ml + pollo 80–100 g",
+                    "Arroz 120–150 g cocido + huevo + zucchini",
+                    "Papa 180–220 g + pescado/huevo + zanahoria cocida",
+                ],
+            ),
+            (
+                "21:00 — Opcional",
+                [
+                    "Solo infusión",
+                    "1/2 plátano",
+                    "Compota pequeña 100 g",
+                    "Nota: evitar comida grande tarde.",
+                ],
+            ),
+        ]
+        for block_title, options in blocks:
+            st.markdown(f"**{block_title}**")
+            for index, option in zip(["A", "B", "C", "D"], options):
+                st.write(f"{index}) {option}")
+            st.divider()
+
+        st.markdown("**Ideas rápidas para copiar en un registro**")
+        render_copy_idea(
+            "Almuerzo arroz + pollo",
+            "arroz blanco cocido 160 g + pollo 120 g + zanahoria cocida 100 g",
+        )
+        render_copy_idea(
+            "Cena sopa suave",
+            "sopa de papa/zanahoria/zapallo 400 ml + pollo 80 g",
+        )
+        render_copy_idea(
+            "Desayuno avena suave",
+            "avena suave 40 g + agua/leche sin lactosa 200 ml + 1/2 plátano",
+        )
+
+    with st.expander("Menú 3 días"):
+        menus = {
+            "Día 1": [
+                "Desayuno: avena 40 g + 1/2 plátano",
+                "Snack: yogur 125 g o tostada",
+                "Almuerzo: arroz cocido 160 g + pollo 120 g + zanahoria 100 g",
+                "Snack: té + tostada",
+                "Cena: sopa 400 ml + huevo o pollo 80 g",
+            ],
+            "Día 2": [
+                "Desayuno: 2 huevos + tostada",
+                "Snack: compota 150 g",
+                "Almuerzo: papa 220 g + pescado 140 g + zucchini 100 g",
+                "Snack: yogur o crackers",
+                "Cena: arroz 140 g + pollo/pavo 100 g + espinaca cocida poca",
+            ],
+            "Día 3": [
+                "Desayuno: licuado pequeño con 1/2 plátano + 200 ml líquido + 20 g avena",
+                "Snack: tostada + té",
+                "Almuerzo: sopa de arroz/papa + pollo",
+                "Snack: compota o yogur",
+                "Cena: pescado/huevo + papa 200 g + calabaza/zucchini",
+            ],
+        }
+        for day, meals in menus.items():
+            st.markdown(f"**{day}**")
+            for meal in meals:
+                st.write(f"- {meal}")
+
+    with st.expander("Cómo usarlo"):
+        st.write(
+            "Usa este plan como test de 72 horas. No busques perfección. El objetivo es "
+            "reducir variables: menos gas externo, menos grasa, menos volumen y menos "
+            "fermentables. Registra cada comida y observa si burbujeo, presión o dolor bajan."
+        )
+
+    with st.expander("Cuándo no esperar"):
+        st.write(
+            "Si aparece dolor fuerte o persistente, vómitos, fiebre, abdomen duro, sangre, "
+            "pérdida de peso progresiva sin poder comer/beber, o imposibilidad de evacuar o "
+            "expulsar gases, no uses la app como sustituto: busca atención médica."
+        )
+
+
 def page_new_record() -> None:
     st.subheader("Nuevo registro")
     render_disclaimer()
@@ -571,6 +783,7 @@ def main() -> None:
             "Síntomas altos",
             "Comidas seguras",
             "Gas externo",
+            "Plan suave 72h",
             "Para el doctor",
             "Export / Import",
         ],
@@ -588,6 +801,8 @@ def main() -> None:
         page_safe_foods(df)
     elif page == "Gas externo":
         page_external_gas(df)
+    elif page == "Plan suave 72h":
+        page_soft_72h_plan()
     elif page == "Para el doctor":
         page_doctor(df)
     elif page == "Export / Import":
